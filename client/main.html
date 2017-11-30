@@ -1,0 +1,52 @@
+<body>
+  <h1>RPC stubs rock the boat</h1>
+  {{> loginButtons}}
+  <div style="width: 300px;">
+    {{> hello}}
+      {{> cruel}}
+      {{> world}}
+    </div>
+    {{> logarea}}
+  </body>
+
+  <template name="hello">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin: 3px 0">
+      <pre>{{getArgs}}</pre>
+      <button>call</button>
+    </div>
+  </template>
+
+  <template name="cruel">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin: 3px 0">
+    <pre>{{getArgs}}</pre>
+    <button>call</button>
+  </div>
+</template>
+
+<template name="world">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin: 3px 0">
+    <pre>{{getArgs}}</pre>
+    <button>call</button>
+  </div>
+</template>
+
+<template name="logarea">
+  <p>Calls: {{counter}}</p>
+  <h2>Logs:</h2>
+  <div style="background-color: #000; height: 600px; overflow-y: scroll;">
+    {{#each entry in logs}}
+      <div style="display: flex;">
+        <pre style="font-weight: bold; color: #fff;"> {{entry.timestamp}} 
+ [{{entry.source}}] </pre>
+        <pre style="color: {{entry.color}}">{{entry.message}}</pre>
+      </div>
+    {{/each}}
+  </div>
+  <button>Clear</button>
+  <select>
+    <option value="0">error</option>
+    <option value="1">log</option>
+    <option value="2" selected>info</option>
+    <option value="3">verbose</option>
+  </select>
+</template>
