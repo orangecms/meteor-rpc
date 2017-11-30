@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
+import doSomething from './lib/doSomething';
 import { fooStub } from '/lib/stubs';
 const { name, validate } = fooStub;
 
@@ -9,14 +10,6 @@ const createMethod = ({ name, validate }, run) => new ValidatedMethod({
   validate,
   run,
 });
-
-const doSomething = (bar, foobar, connection) => {
-  if (foobar === 0) {
-    throw new Meteor.Error('Only Chuck Norris can div by zero');
-  }
-  const ip = connection.httpHeaders['x-forwarded-for'] || connection.clientAddress;
-  return `I got ${bar} from ${ip}.`;
-};
 
 Meteor.startup(() => createMethod(
   fooStub,
